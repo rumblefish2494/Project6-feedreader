@@ -86,10 +86,9 @@ $(function() {
     });
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
-        var feeds = [];
+        var entries = [];
         beforeEach(function(done){
             setTimeout(function() {
-                console.log(feeds);
                 done();
             },1000);
 
@@ -101,19 +100,49 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
          it('Should countain at least 1 .entry element within the .feed container', function(done) {
-            feeds = $('.feed').find('.entry');
-            expect(feeds.length).toBeGreaterThan(0);
-            console.log(feeds);
+            //check for feeds children of class entry in DOM after loadFeed() is ran
+            entries = $('.feed').find('.entry');
+            expect(entries.length).toBeGreaterThan(0);
             done();
-         })
+         });
 
 
     });
     /* TODO: Write a new test suite named "New Feed Selection"*/
     describe('New Feed', function() {
+        var newEntries;
+        var feeds = allFeeds;
+        var feedList = $('.feed-list').find('a');
+        var feedNumber = 1;
+        var entries;
+
+        beforeEach(function(done){
+            setTimeout(function() {
+                done();
+            },1000);
+        });
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.*/
+
+        it('After loading initial content', function(done) {
+            //load first feed (feed[0]) into entries variable to compare
+            entries = $('.feed').find('.entry');
+            expect(entries.length).toBeGreaterThan(0);
+            //trigger click event on next feed in feedList
+            $(feedList[1]).trigger('click');
+            done();
+        });
+
+        it('should change content when new feed is loadad', function(done) {
+            //load 2nd feed into newEntries variable
+            newEntries = $('.feed').find('.entry');
+            //compare entries to newEntries. should not be the same
+            expect(entries[0]).not.toBe(newEntries[0]);
+            //onsole.log(entries);
+            //console.log(newEntries);
+            done();
+         });
 
     });
 
