@@ -34,8 +34,6 @@ $(function() {
          it('has url defined and not empty string', function() {
             for (var i = 0; i < allFeeds.length; i++){
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe('');
-                console.log(allFeeds[i].url);
             }
          });
 
@@ -48,7 +46,6 @@ $(function() {
         for (var i = 0; i < allFeeds.length; i++){
             expect(allFeeds[i].name).toBeDefined();
             expect(allFeeds[i].name).not.toBe('');
-            console.log(allFeeds[i].name);
         }
      });
 
@@ -64,9 +61,13 @@ $(function() {
          */
         it('is hidden by default', function() {
             expect($('body').attr('class')).toBe('menu-hidden');
-            console.log($('body').attr('class'));
         });
 
+         /* TODO: Write a test that ensures the menu changes
+          * visibility when the menu icon is clicked. This test
+          * should have two expectations: does the menu display when
+          * clicked and does it hide when clicked again.
+          */
         it('displays when clicked and hides when unclicked', function() {
             //trigger click event on menu icon to simulate mouse click
             $('.menu-icon-link').trigger('click');
@@ -81,20 +82,30 @@ $(function() {
 
 
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+
     });
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
+        var feeds = [];
+        beforeEach(function(done){
+            setTimeout(function() {
+                console.log(feeds);
+                done();
+            },1000);
+
+        });
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test wil require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+         it('Should countain at least 1 .entry element within the .feed container', function(done) {
+            feeds = $('.feed').find('.entry');
+            expect(feeds.length).toBeGreaterThan(0);
+            console.log(feeds);
+            done();
+         })
 
 
     });
