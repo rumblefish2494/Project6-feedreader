@@ -141,14 +141,14 @@ $(function() {
 
         $(feedList).each(function(index) {
             if ( i <= index) {
-            it('should change content when new feed is loadad', function(done) {
-                console.log(initialEntries);
-                console.log(newEntries);
-                //compare entries to newEntries. should not be the same
-                expect(initialEntries[0]).not.toBe(newEntries[0]);
-                i++;
-                done();
-            });
+                it('should change content when new feed is loadad', function(done) {
+                    console.log(initialEntries);
+                    console.log(newEntries);
+                    //compare entries to newEntries. should not be the same
+                    expect(initialEntries[0]).not.toBe(newEntries[0]);
+                    i++;
+                    done();
+                });
             };
         });
 
