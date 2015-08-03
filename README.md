@@ -1,3 +1,36 @@
+Udacity FEWD January Cohort
+Project6
+Feed Reader Testing
+Brian Harlin
+
+==========================
+INSTRUCTIONS:
+==========================
+Download all files from GitHub:
+https://github.com/rumblefish2494/Project6-feedreader
+to your local machine.
+open index.html file in your browser.
+browser window should display feed reader app with Jasmine test at the bottom of page
+Jasmine section should indicate 8 Specs 0 failures.
+
+==========================
+JASMINE SPECS:
+==========================
+Jasmine specs can be found in file feedreader.js
+in folder jasmine/spec.
+There are 4 test suites in the spec file for Jasmine:
+1. RSS feeds- ensures that the feeds array is defined and populated with a
+   name and a url.
+2. The Menu- ensures that the menu element is hidden by default and will hide/unhide
+   when the menu icon is clicked.
+3. Initial Entries- ensures that the .feeds container has at least 1 entry upon initial load
+4. New Feed- ensures that after the initial feed is loaded, content will change when a subsequent
+   feed is loaded.
+
+
+
+
+
 # Project Overview
 
 In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
