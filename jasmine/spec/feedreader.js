@@ -87,11 +87,12 @@ $(function() {
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
         var entries = [];
+        var feeds = $('.feed');
         beforeEach(function(done){
-            setTimeout(function() {
+            feeds.empty();
+            loadFeed(0, function() {
                 done();
-            },1000);
-
+            });
         });
 
         /* TODO: Write a test that ensures when the loadFeed
@@ -111,39 +112,56 @@ $(function() {
     });
     /* TODO: Write a new test suite named "New Feed Selection"*/
     describe('New Feed', function() {
+        var feeds = $('.feed');
         var newEntries;
+        var initialEntries;
         var feedList = $('.feed-list').find('a');
         var entries = $('.feed').find('.entry');
-        var i = 0;
+        var i = 1;
 
         beforeEach(function(done){
-            setTimeout(function() {
+            //empty feeds
+            //load initial feeds
+            feeds.empty();
+            loadFeed(0, function(){
+                initialEntries = $('.feed').find('.entry');
+                //load other feeds in array feedList for comparison
+                //refactored thanks to https://discussions.udacity.com/t/last-test-suit-new-feed-selection-not-working/26375
+                loadFeed(i, function() {
+                    newEntries = $('.feed').find('.entry');
+                    done();
+                });
 
-                done();
-            },1000);
+            });
         });
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.*/
 
-        it('After loading initial content', function(done) {
+        $(feedList).each(function(index) {
+            if ( i <= index) {
+            it('should change content when new feed is loadad', function(done) {
+                console.log(initialEntries);
+                console.log(newEntries);
+                //compare entries to newEntries. should not be the same
+                expect(initialEntries[0]).not.toBe(newEntries[0]);
+                i++;
+                done();
+            });
+            };
+        });
+
+        /*it('After loading initial content', function(done) {
             //load first feed (feed[0]) into entries variable to compare
             entries = $('.feed').find('.entry');
             expect(entries.length).toBeGreaterThan(0);
             //trigger click event on next feed in feedList
             $(feedList[1]).trigger('click');
             done();
-        });
+        });*/
 
 
-        it('should change content when new feed is loadad', function(done) {
-            //load 2nd feed into newEntries variable
-            newEntries = $('.feed').find('.entry');
-            //compare entries to newEntries. should not be the same
-            expect(entries[0]).not.toBe(newEntries[0]);
-            done();
-        });
 
     });
 
