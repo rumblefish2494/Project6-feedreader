@@ -102,9 +102,12 @@ $(function() {
             feeds.empty();
             loadFeed(0, function(){
                 initialEntries = $('.feed').find('.entry');
-                //load other feeds in array feedList for comparison
-                //refactored thanks to https://discussions.udacity.com/t/last-test-suit-new-feed-selection-not-working/26375
-                loadFeed(i, function() {
+                /*load other feeds in array feedList for comparison
+                 *refactored thanks to https://discussions.udacity.com/t/last-test-suit-new-feed-selection-not-working/26375
+                 *!!!!code review on 8-4-15 says variable 'i' is not used in code. however 'i' is used below!!!! 
+                 *if reviewer would prefer to not iterate over all feeds for the test that is fine and I can change
+                 */  
+                loadFeed(i, function() { //variable i is used here!!
                     newEntries = $('.feed').find('.entry');
                     done();
                 });
@@ -114,16 +117,14 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * this iterates through all feeds and tests each one against the initial feed*/
         $(feedList).each(function(index) {
-            if ( i <= index) {
+            if ( i <= index) { //variable i is used because index is not available outside this scope!
                 it('should change content when new feed is loadad', function(done) {
-                    var initialContent = $(initialEntries[0]).text();
-                    var newContent
                     //compare entries to newEntries. should not be the same
                     expect($(initialEntries[0]).text()).not.toEqual($(newEntries[0]).text());
-                    i++;
+                    i++; //increment i for use in line 110!!
                     done();
                 });
-            };
-        });
+            }
+        })
     });
 }());
