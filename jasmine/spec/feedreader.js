@@ -119,7 +119,7 @@ $(function() {
                     var initialContent = $(initialEntries[0]).text();
                     var newContent
                     //compare entries to newEntries. should not be the same
-                    expect($(initialEntries[0]).text()).not.toContain($(newEntries[0]).text());
+                    expect($(initialEntries[0]).text()).not.toEqual($(newEntries[0]).text());
                     i++;
                     done();
                 });
